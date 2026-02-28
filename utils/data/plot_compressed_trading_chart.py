@@ -21,7 +21,7 @@ def plot_compressed_trading_chart(
 
     x_positions = range(len(plot_data))
 
-    figure = plt.figure(num=1, figsize=(12, 5), clear=True)
+    figure = plt.figure(figsize=(12, 5))
     if hasattr(figure.canvas, "header_visible"):
         figure.canvas.header_visible = False
     plt.plot(x_positions, plot_data["Close"], linewidth=1)

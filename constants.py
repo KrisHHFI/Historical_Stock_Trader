@@ -1,5 +1,4 @@
-stock_data_location: str = "/Users/kristopherpepper/Documents/jupyterProjects/historicalStockTrader/raw_data/TSLA_1m_7d_20260225_223742.csv"
-raw_data_folder: str = "/Users/kristopherpepper/Documents/jupyterProjects/historicalStockTrader/raw_data"
+raw_data_folder: str = "/Users/kristopherpepper/Documents/jupyterProjects/historicalStockTrader2/raw_data"
 
 # Trading
 capital: int = 10000
