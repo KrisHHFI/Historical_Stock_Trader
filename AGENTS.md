@@ -31,7 +31,7 @@
 ## Project Architecture
 
 ```text
-historicalStockTrader/
+historicalStockTrader2/
 ├── .gitignore
 ├── AGENTS.md
 ├── README.md
@@ -42,26 +42,36 @@ historicalStockTrader/
    ├── __init__.py
    ├── data/
    │   ├── __init__.py
+   │   ├── aggregate_performances.py
    │   ├── build_file_metadata_rows.py
    │   ├── build_performance_rows.py
    │   ├── build_stock_metadata_rows.py
    │   ├── parse_stock_filename_metadata.py
-   │   └── plot_compressed_trading_chart.py
+   │   └── chart/
+   │       ├── __init__.py
+   │       ├── plot_compressed_trading_chart.py
+   │       └── helpers/
+   │           ├── build_time_to_position.py
+   │           ├── extract_trade_markers.py
+   │           ├── get_time_column.py
+   │           ├── load_and_prepare_data.py
+   │           ├── plot_trade_markers.py
+   │           └── set_day_xticks.py
    ├── printing/
    │   ├── __init__.py
    │   ├── create_metadata_table.py
    │   ├── print_h1.py
    │   ├── print_h2.py
    │   ├── print_header.py
-   │   ├── print_subheader.py
    │   ├── print_metadata_tables.py
    │   ├── print_performance_table.py
+   │   ├── print_subheader.py
    │   └── print_trades_table.py
-   ├── trading_algorithms/  # internal algorithm files (git-ignored)
-   └── trade_actions/
-      ├── __init__.py
-      ├── execute_buy_trade.py
-      └── execute_sell_trade.py
+   ├── trade_actions/
+   │   ├── __init__.py
+   │   ├── execute_buy_trade.py
+   │   └── execute_sell_trade.py
+   └── trading_algorithms/  # internal algorithm files (git-ignored)
 ```
 
 ## Notes

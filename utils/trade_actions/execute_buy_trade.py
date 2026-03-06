@@ -1,9 +1,14 @@
+from typing import Any
+
+import pandas as pd
+
+
 def execute_buy_trade(
     cash: float,
     close_price: float,
-    trade_time,
+    trade_time: pd.Timestamp,
     transaction_fee_bps: float = 0.0,
-) -> dict:
+) -> dict[str, Any]:
     fee_rate = abs(transaction_fee_bps) / 10000
     cost_per_share = close_price * (1 + fee_rate)
     shares_to_buy = int(cash // cost_per_share)
