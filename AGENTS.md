@@ -37,6 +37,8 @@ historicalStockTrader2/
 ├── README.md
 ├── constants.py
 ├── main.ipynb
+├── tools/
+│   └── cli.py           # CLI entry point — run with: python tools/cli.py start
 ├── machine_learning/
 │   ├── ml_constants.py
 │   └── ml_optimizer.py
@@ -89,6 +91,19 @@ historicalStockTrader2/
   /opt/anaconda3/bin/python machine_learning/ml_optimizer.py
   ```
 - Increase `ml_n_trials` in `constants.py` for more thorough search. Results are saved incrementally so interrupting early still keeps all improvements found so far.
+
+## CLI Tool
+
+- `tools/cli.py` is the command-line entry point for the project.
+- **How to run** (from the project root directory):
+  ```
+  python tools/cli.py start
+  ```
+- On `start`, it calls the GitHub Models API (via the `openai` package) using GPT-4o to return the name of a popular quantitative trading strategy formatted with words separated by `_`.
+- Requires the `GITHUB_TOKEN` environment variable to be set to a valid GitHub personal access token. Add it permanently with:
+  ```
+  echo 'export GITHUB_TOKEN=your_token_here' >> ~/.zshrc && source ~/.zshrc
+  ```
 
 ## Notes
 
