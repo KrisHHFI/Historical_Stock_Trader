@@ -38,7 +38,14 @@ historicalStockTrader2/
 ├── constants.py
 ├── main.ipynb
 ├── tools/
-│   └── cli.py           # CLI entry point — run with: python tools/cli.py start
+│   ├── cli.py                          # CLI entry point — run with: python tools/cli.py start
+│   ├── get_client.py                   # builds the OpenAI client
+│   ├── get_existing_strategy_names.py  # lists already-generated strategy names
+│   ├── get_strategy_name.py            # asks the model for a new strategy name
+│   ├── strip_markdown_fences.py        # strips markdown fences from model output
+│   ├── generate_algorithm_code.py      # calls the model to produce backtest code
+│   ├── save_algorithm.py               # writes the generated file to trading_algorithms/
+│   └── update_constants.py             # updates constants.py with the new active algorithm
 ├── machine_learning/
 │   ├── ml_constants.py
 │   └── ml_optimizer.py
