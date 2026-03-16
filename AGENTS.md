@@ -38,7 +38,8 @@ historicalStockTrader2/
 ├── constants.py
 ├── main.ipynb
 ├── tools/
-│   ├── cli.py                          # CLI entry point — run with: python tools/cli.py start
+│   ├── cli.py                          # CLI entry point — shows help or dispatches commands
+│   ├── cmd_create_new.py               # command: generate a new algorithm and activate it
 │   ├── get_client.py                   # builds the OpenAI client
 │   ├── get_existing_strategy_names.py  # lists already-generated strategy names
 │   ├── get_strategy_name.py            # asks the model for a new strategy name
@@ -101,12 +102,18 @@ historicalStockTrader2/
 
 ## CLI Tool
 
-- `tools/cli.py` is the command-line entry point for the project.
-- **How to run** (from the project root directory):
+- `tools/cli.py` is the command-line entry point for the project. Running it with no arguments (or an unrecognised command) prints a help page listing available commands.
+- Each command lives in its own `cmd_*.py` file inside `tools/`.
+- Commands are invoked via the `trader` shell function registered in `~/.zshrc`. **How to use**:
   ```
-  python tools/cli.py start
+  trader help           # show help page
+  trader create new     # generate a new algorithm
   ```
-- On `start`, it calls the GitHub Models API (via the `openai` package) using GPT-4o to:
+- To register the `trader` function on a new machine, add this to `~/.zshrc`:
+  ```
+  function trader() { python /Users/kristopherpepper/Documents/jupyterProjects/historicalStockTrader2/tools/cli.py "$@"; }
+  ```
+- On `create new`, it calls the GitHub Models API (via the `openai` package) using GPT-4o to:
   1. Generate the name of a popular quantitative trading strategy (words separated by `_`).
   2. Generate a fully compatible backtest function following the project's algorithm conventions.
   3. Save the generated file to `utils/trading_algorithms/run_mock_<strategy_name>_backtest.py`.
@@ -114,6 +121,7 @@ historicalStockTrader2/
   ```
   echo 'export GITHUB_TOKEN=your_token_here' >> ~/.zshrc && source ~/.zshrc
   ```
+- When adding a new CLI command, add a copy-paste usage example to the **Commands** section of `README.md`.
 
 ## Notes
 
