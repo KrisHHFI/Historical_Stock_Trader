@@ -32,3 +32,4 @@ utils/trading_algorithms/
 
 # ML optimizer output
 ml_optimizer_results.txt
+ml_best_params.json

@@ -47,3 +47,6 @@ def cmd_create_refine() -> None:
         print(f"ML param builder registered for '{algo_name}'.")
 
     subprocess.run(["python", str(ML_OPTIMIZER_PATH)], check=True)
+
+    from apply_best_params import apply_best_params
+    apply_best_params()

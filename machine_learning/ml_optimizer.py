@@ -24,12 +24,13 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).parent.parent))  # project root
 sys.path.insert(0, str(Path(__file__).parent))          # machine_learning/
 
+import json
 import optuna
 optuna.logging.set_verbosity(optuna.logging.WARNING)
 
 from constants import (
     active_algorithm, raw_data_folder, capital, transaction_fee_bps,
-    ml_n_trials, ml_trial_delay_seconds, ml_results_file,
+    ml_n_trials, ml_trial_delay_seconds, ml_results_file, ml_best_params_file,
 )
 from ml_constants import ml_params_builder
 
@@ -90,4 +91,11 @@ except KeyboardInterrupt:
 
 if study.best_trial:
     print(f"\nFinal best: ${study.best_value:.2f}  (see {ml_results_file.name} for all improvements)")
+    best_params_data = {
+        "algorithm": active_algorithm.__name__,
+        "avg_final_capital": round(study.best_value, 4),
+        "params": study.best_params,
+    }
+    with open(ml_best_params_file, "w") as f:
+        json.dump(best_params_data, f, indent=2)
 

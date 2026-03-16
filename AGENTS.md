@@ -48,6 +48,7 @@ historicalStockTrader2/
 │   ├── generate_ml_params_code.py      # calls the model to produce the ML param builder
 │   ├── save_algorithm.py               # writes the generated file to trading_algorithms/
 │   ├── save_ml_params.py               # inserts the param builder into ml_constants.py
+│   ├── apply_best_params.py            # reads ml_best_params.json and patches the active algo's defaults
 │   └── update_constants.py             # updates constants.py with the new active algorithm
 ├── machine_learning/
 │   ├── ml_constants.py
