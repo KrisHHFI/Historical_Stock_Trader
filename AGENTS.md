@@ -45,7 +45,9 @@ historicalStockTrader2/
 │   ├── get_strategy_name.py            # asks the model for a new strategy name
 │   ├── strip_markdown_fences.py        # strips markdown fences from model output
 │   ├── generate_algorithm_code.py      # calls the model to produce backtest code
+│   ├── generate_ml_params_code.py      # calls the model to produce the ML param builder
 │   ├── save_algorithm.py               # writes the generated file to trading_algorithms/
+│   ├── save_ml_params.py               # inserts the param builder into ml_constants.py
 │   └── update_constants.py             # updates constants.py with the new active algorithm
 ├── machine_learning/
 │   ├── ml_constants.py
@@ -122,6 +124,7 @@ historicalStockTrader2/
   echo 'export GITHUB_TOKEN=your_token_here' >> ~/.zshrc && source ~/.zshrc
   ```
 - When adding a new CLI command, add a copy-paste usage example to the **Commands** section of `README.md`.
+- `trader refine` runs `machine_learning/ml_optimizer.py` via `cmd_create_refine.py`.
 
 ## Notes
 

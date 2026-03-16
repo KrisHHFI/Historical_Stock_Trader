@@ -28,8 +28,8 @@ trader help
 trader create new
 ```
 
-### Run the ML parameter optimizer
+### Tune the active algorithm with the ML parameter optimizer
 
 ```bash
-/opt/anaconda3/bin/python machine_learning/ml_optimizer.py
+trader refine
 ```

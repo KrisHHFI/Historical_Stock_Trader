@@ -90,6 +90,18 @@ def _run_mock_rsi_bb_mean_reversion_backtest_params(trial: optuna.Trial) -> dict
     }
 
 
+
+
+def _run_mock_bollinger_band_breakout_backtest_params(trial: optuna.Trial) -> dict[str, int | float]:
+    return {
+        "bollinger_window": trial.suggest_int("bollinger_window", 10, 50),
+        "bollinger_std_dev": trial.suggest_float("bollinger_std_dev", 1.0, 3.0),
+        "stop_loss_pct": trial.suggest_float("stop_loss_pct", 0.5, 3.0),
+        "take_profit_pct": trial.suggest_float("take_profit_pct", 1.0, 5.0),
+        "trailing_stop_pct": trial.suggest_float("trailing_stop_pct", 0.3, 2.0),
+        "max_hold_bars": trial.suggest_int("max_hold_bars", 30, 300),
+        "cooldown_bars": trial.suggest_int("cooldown_bars", 3, 30)
+    }
 # ── REGISTRY ──────────────────────────────────────────────────────────────────
 
 ML_PARAM_BUILDERS: dict[str, ParamBuilder] = {
@@ -98,6 +110,7 @@ ML_PARAM_BUILDERS: dict[str, ParamBuilder] = {
     "run_mock_turtle_trading_backtest":         _run_mock_turtle_trading_backtest_params,
     "run_mock_orb_backtest":                    _run_mock_orb_backtest_params,
     "run_mock_rsi_bb_mean_reversion_backtest":  _run_mock_rsi_bb_mean_reversion_backtest_params,
+    "run_mock_bollinger_band_breakout_backtest":         _run_mock_bollinger_band_breakout_backtest_params,
 }
 
 # Resolve builder for the currently active algorithm
