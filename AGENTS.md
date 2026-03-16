@@ -109,7 +109,8 @@ historicalStockTrader2/
 - Commands are invoked via the `trader` shell function registered in `~/.zshrc`. **How to use**:
   ```
   trader help           # show help page
-  trader create new     # generate a new algorithm
+  trader create         # generate a new algorithm
+  trader refine         # run the ML parameter optimizer
   ```
 - To register the `trader` function on a new machine, add this to `~/.zshrc`:
   ```

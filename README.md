@@ -25,7 +25,7 @@ trader help
 ### Generate a new trading algorithm
 
 ```bash
-trader create new
+trader create
 ```
 
 ### Tune the active algorithm with the ML parameter optimizer

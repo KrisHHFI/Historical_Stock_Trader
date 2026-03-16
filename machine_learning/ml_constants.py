@@ -26,20 +26,14 @@ ParamBuilder = Callable[[optuna.Trial], dict[str, int | float]]
 
 def _run_mock_ema_crossover_backtest_params(trial: optuna.Trial) -> dict[str, int | float]:
     return {
-        "fast_span":                  trial.suggest_int("fast_span", 5, 20),
-        "slow_span":                  trial.suggest_int("slow_span", 21, 80),
-        "entry_spread_threshold_pct": trial.suggest_float("entry_spread_threshold_pct", 0.05, 0.5),
-        "exit_spread_threshold_pct":  trial.suggest_float("exit_spread_threshold_pct", -0.3, 0.0),
-        "min_spread_momentum_pct":    trial.suggest_float("min_spread_momentum_pct", 0.01, 0.15),
-        "slow_trend_lookback_bars":   trial.suggest_int("slow_trend_lookback_bars", 2, 10),
-        "min_hold_bars":              trial.suggest_int("min_hold_bars", 3, 20),
-        "max_hold_bars":              trial.suggest_int("max_hold_bars", 60, 300),
-        "cooldown_bars":              trial.suggest_int("cooldown_bars", 3, 20),
+        "fast_ema_window":            trial.suggest_int("fast_ema_window", 5, 20),
+        "slow_ema_window":            trial.suggest_int("slow_ema_window", 21, 80),
+        "trend_ema_window":           trial.suggest_int("trend_ema_window", 50, 200),
         "stop_loss_pct":              trial.suggest_float("stop_loss_pct", 0.5, 3.0),
         "take_profit_pct":            trial.suggest_float("take_profit_pct", 1.0, 5.0),
         "trailing_stop_pct":          trial.suggest_float("trailing_stop_pct", 0.3, 2.0),
-        "max_entry_volatility_pct":   trial.suggest_float("max_entry_volatility_pct", 0.3, 2.0),
-        "volatility_lookback_bars":   trial.suggest_int("volatility_lookback_bars", 10, 40),
+        "max_hold_bars":              trial.suggest_int("max_hold_bars", 30, 300),
+        "cooldown_bars":              trial.suggest_int("cooldown_bars", 3, 30),
     }
 
 
