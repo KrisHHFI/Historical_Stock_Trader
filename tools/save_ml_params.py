@@ -1,5 +1,6 @@
 import re
 from pathlib import Path
+from strip_markdown_fences import strip_markdown_fences
 
 ML_CONSTANTS_PATH = Path(__file__).parent.parent / "machine_learning" / "ml_constants.py"
 
@@ -8,6 +9,8 @@ def save_ml_params(strategy_name: str, params_func_code: str) -> None:
     safe_name = re.sub(r"[^a-z0-9_]", "", strategy_name.lower().replace(" ", "_"))
     func_name = f"_run_mock_{safe_name}_backtest_params"
     registry_key = f"run_mock_{safe_name}_backtest"
+
+    params_func_code = strip_markdown_fences(params_func_code)
 
     content = ML_CONSTANTS_PATH.read_text(encoding="utf-8")
 

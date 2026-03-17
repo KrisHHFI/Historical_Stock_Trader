@@ -109,7 +109,6 @@ def _run_mock_keltner_channel_breakout_backtest_params(trial: optuna.Trial) -> d
     }
 
 
-```python
 def _run_mock_mean_reversion_backtest_params(trial: optuna.Trial) -> dict[str, int | float]:
     return {
         "rsi_period": trial.suggest_int("rsi_period", 5, 30),
@@ -121,7 +120,6 @@ def _run_mock_mean_reversion_backtest_params(trial: optuna.Trial) -> dict[str, i
         "max_hold_bars": trial.suggest_int("max_hold_bars", 30, 300),
         "cooldown_bars": trial.suggest_int("cooldown_bars", 3, 30),
     }
-```
 # ── REGISTRY ──────────────────────────────────────────────────────────────────
 
 ML_PARAM_BUILDERS: dict[str, ParamBuilder] = {
