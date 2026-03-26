@@ -42,12 +42,15 @@ historicalStockTrader2/
 │   ├── cmd_create_new.py               # command: generate a new algorithm and activate it
 │   ├── get_client.py                   # builds the OpenAI client
 │   ├── get_existing_strategy_names.py  # lists already-generated strategy names
+│   ├── get_active_algorithm_name.py    # reads the current active_algorithm name from constants.py
 │   ├── get_strategy_name.py            # asks the model for a new strategy name
 │   ├── strip_markdown_fences.py        # strips markdown fences from model output
 │   ├── generate_algorithm_code.py      # calls the model to produce backtest code
 │   ├── generate_ml_params_code.py      # calls the model to produce the ML param builder
 │   ├── save_algorithm.py               # writes the generated file to trading_algorithms/
 │   ├── save_ml_params.py               # inserts the param builder into ml_constants.py
+│   ├── evaluate_algorithm.py           # runs the algo on all raw CSVs and returns trade count + return %
+│   ├── discard_algorithm.py            # deletes algo file, cleans ml_constants.py, restores constants.py
 │   ├── apply_best_params.py            # reads ml_best_params.json and patches the active algo's defaults
 │   ├── update_constants.py             # updates constants.py with the new active algorithm
 │   └── run_notebook.py                 # restarts the kernel and executes main.ipynb via nbconvert
@@ -106,6 +109,7 @@ historicalStockTrader2/
 
 ## CLI Tool
 
+- The CLI commands (`trader create`, `trader refine`) are the **core functionality of this app** — they are the primary way users interact with the project to generate new strategies and optimise them.
 - `tools/cli.py` is the command-line entry point for the project. Running it with no arguments (or an unrecognised command) prints a help page listing available commands.
 - Each command lives in its own `cmd_*.py` file inside `tools/`.
 - Commands are invoked via the `trader` shell function registered in `~/.zshrc`. **How to use**:
@@ -128,6 +132,7 @@ historicalStockTrader2/
   ```
 - When adding a new CLI command, add a copy-paste usage example to the **Commands** section of `README.md`.
 - `trader refine` runs `machine_learning/ml_optimizer.py` via `cmd_create_refine.py`.
+- After generating a new algorithm, `trader create` evaluates it by running it against all CSV files in `raw_data/` before touching the notebook. If the algorithm executes zero trades across all stocks, or achieves a combined return below −10%, it is automatically discarded (file deleted, `ml_constants.py` cleaned, `constants.py` restored) and the process retries with a fresh strategy — up to 3 attempts total. Only a passing algorithm triggers the notebook run.
 - After `trader create` finishes generating and activating the new algorithm, it automatically restarts the kernel and runs `main.ipynb` end-to-end via `tools/run_notebook.py` (uses `jupyter nbconvert --execute --inplace`).
 
 ## Notes
