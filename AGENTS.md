@@ -69,6 +69,7 @@ historicalStockTrader2/
    │   ├── build_performance_rows.py
    │   ├── build_stock_metadata_rows.py
    │   ├── parse_stock_filename_metadata.py
+   │   ├── run_all_backtests.py
    │   └── chart/
    │       ├── __init__.py
    │       ├── plot_compressed_trading_chart.py
@@ -88,7 +89,8 @@ historicalStockTrader2/
    │   ├── print_metadata_tables.py
    │   ├── print_performance_table.py
    │   ├── print_subheader.py
-   │   └── print_trades_table.py
+   │   ├── print_trades_table.py
+   │   └── print_all_stock_trades.py
    ├── trade_actions/
    │   ├── __init__.py
    │   ├── execute_buy_trade.py
